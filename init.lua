@@ -692,7 +692,7 @@ require('lazy').setup({
           settings = {
             javascript = {
               format = {
-                indentSize = 2,
+                indentSize = 4,
               },
             },
           },
