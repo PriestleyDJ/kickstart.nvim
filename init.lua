@@ -293,6 +293,31 @@ require('lazy').setup({
       end)
     end,
   },
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+    opts = {
+      check_ts = true,
+    },
+  },
+  {
+    'windwp/nvim-ts-autotag', -- Add the ts-autotag plugin
+    config = function() -- Call the setup function after the plugin is loaded
+      require('nvim-ts-autotag').setup {
+        opts = {
+          enable_close = true,
+          enable_rename = true,
+          enable_close_on_slash = false,
+        },
+        per_filetype = {
+          ['html'] = {
+            enable_close = false,
+          },
+        },
+      }
+    end,
+  },
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
@@ -688,15 +713,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        ts_ls = {
-          settings = {
-            javascript = {
-              format = {
-                indentSize = 4,
-              },
-            },
-          },
-        },
+        ts_ls = {},
         --
 
         lua_ls = {
